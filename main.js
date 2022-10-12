@@ -1,4 +1,5 @@
 console.log("script started");
+
 var display = "0";
 var operand1 = 0;
 var operand2 = null;
@@ -16,13 +17,6 @@ function actualizareDisplay(){
     document.getElementById("display").innerText = display;
 }
 
-
-// var element = document.getElementById('selectabil');
-// element.addEventListener("click", afiseazaCeva);
-// function afiseazaCeva(e){
-//     console.log(e.target.innerText);
-//     e.target.style="background-color: purple";
-// }
 
 var cifre = Array.from(document.getElementsByClassName("cifra"));
 
@@ -64,12 +58,22 @@ function functieApasata(e){
             break;
         case "Sterge":
             console.log("Ai apasat sterge");
+            if(operatie === null){
+                operand1 = Math.floor(operand1/10);
+                display = operand1;
+                actualizareDisplay();
+            }else{
+                operand2 = Math.floor(operand2/10);
+                display = operand2;
+                actualizareDisplay();
+            }
             break;
         case "=":
             console.log(display);
             calcul();
             actualizareDisplay();
-            //operand1 = calcul(); pentru continuare calcule cu rezultatul obtinut
+            //operand1 = calcul(); // pentru continuare calcule cu rezultatul obtinut
+           
             break;
         default:
             console.log("ai apasat alta functie");
@@ -80,7 +84,7 @@ function functieApasata(e){
 
 function calcul(){
     let result = 0;
-    console.log("operaatie este", operatie);
+    console.log("operatie este", operatie);
     switch(operatie){
         case "+":
             result = operand1 + operand2;
@@ -103,3 +107,4 @@ function calcul(){
 //CONTINUARE OPERATII CU REZULTATUL DUPA APASRE =
 //INTRODUCERE NUMERE NEGATIVE
 //BUTON STERGERE ultima cifra introdusa
+//eventual adaugare functie "."
